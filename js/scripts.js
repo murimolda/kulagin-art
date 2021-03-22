@@ -51,115 +51,199 @@ sandwich.onclick = function(){
 };
 
 // ГАЛЕРЕЯ
-let gallery = document.getElementById('foto-gallery');
-let fotoPage = document.getElementsByClassName('foto-page');
-let galleryClose = document.getElementById('foto-gallery-close');
-let img = document.getElementById('foto');
-let rightArrowButton = document.getElementById('foto-arrow-right');
-let leftArrowButton = document.getElementById('foto-arrow-left');
 
-/*Открываем галерею нажатием на фотографию*/
-for (var i = 0; i < fotoPage.length; i++){
-  var fotoGallery = fotoPage[i].getElementsByTagName('img');
-  for (var i = 0; i < fotoGallery.length; i++){
-    fotoGallery[i].addEventListener('click', function(e){
-      var elem = e.target;
-      img.src = elem.src;
-      gallery.classList.add('foto-gallery-open');
-    });
-  };
-};
+// let slider = document.getElementsByClassName('slider');
+// let fotoItems = document.getElementsByClassName('foto-page-items');
+// let fotoImages = document.getElementsByClassName('foto-image');
+// let prevButton = document.getElementById('prev');
+// let nextButton = document.getElementById('next');
 
-/*Закрываем галерею нажатием креста*/
-function galleryСross(){
-  img.src = "";
-  gallery.classList.remove('foto-gallery-open');
-};
+// // /*Пролистываем галерею стрелкой влево*/
+// function prevArrow(){
+//   for (var i = 0; i < fotoImages.length; i++) {
+//     if (fotoImages[i].style.display = 'block'){
+//       fotoImages[i].style.display ='none'
+//       i--;
+//       fotoImages[i].style.display = 'block';
+//     }
+//   }
+// };
 
-galleryClose.addEventListener('click', function(){
-  galleryСross();
-})
-;
+// prevButton.addEventListener('click', function() {
+//   prevArrow; 
+// });
 
-window.addEventListener('popstate', function(){
-  galleryСross();
-});
+// // /*Пролистываем галерею стрелкой вправо*/
+// function nextArrow(){
+//   for (var i = 0; i < fotoImages.length; i++) {
+//     if (fotoImages[i].style.display = 'block'){
+//       fotoImages[i].style.display ='none'
+//       i++;
+//       fotoImages[i].style.display = 'block';
+//     }
+//   }
+// };
 
-/*Пролистываем галерею стрелкой влево*/
-function leftArrow(){
-  for (var i = 0; i < fotoGallery.length; i++) {
-    if (img.src == fotoGallery[i].src){
-      i--;
-      img.src = fotoGallery[i].src;
-    }
-  }
-};
+// nextButton.addEventListener('click', function(){
+//   nextArrow();
+// });
 
-leftArrowButton.addEventListener('click', function(){
-  leftArrow();
-});
 
-/*Пролистываем галерею стрелкой вправо*/
-function rightArrow(){
-  for (var i = 0; i < fotoGallery.length; i++){
-    if (img.src == fotoGallery[i].src){
-      i++;
-      img.src = fotoGallery[i].src;
-    };
-  };
-};
 
-rightArrowButton.addEventListener('click', function(){
-  rightArrow();
-});
+// showSlides(slideIndex);
 
-/*Пролистываем галерею стрелками на клавиатуре*/
-document.onkeydown = checkKey;
-function checkKey(e){
-  e = e || window.event;
-    if(e.keyCode == '37'){
-      leftArrow();
-    }
-    else if(e.keyCode == '39'){
-      rightArrow();
-    }
-    else if(e.keyCode == '27'){
-      history.pushState(null, null, ' ');
-      galleryСross();
-    }
-}
 
-/*Swipe галереи*/
-img.addEventListener('touchstart', handleTouchStart, false);  
-img.addEventListener('touchmove', handleTouchMove, false);
+// /* Функция увеличивает индекс на 1, показывает следующй слайд*/
+// function plusSlide() {
+//     showSlides(slideIndex += 1);
+// }
+// nextButton.onclick = plusSlide;
 
-let xDown = null;                                                        
-let yDown = null;                                                        
 
-function handleTouchStart(evt) {                                         
-    xDown = evt.touches[0].clientX;                                      
-    yDown = evt.touches[0].clientY;                                      
-};                                                
+// /* Функция уменьшяет индекс на 1, показывает предыдущий слайд*/
+// function minusSlide() {
+//     showSlides(slideIndex -= 1);  
+// }
+// prevButton.onclick = minusSlide;
 
-function handleTouchMove(evt) {
-    if ( ! xDown || ! yDown ) {
-        return;
-    }
+// /* Устанавливает текущий слайд */
+// function currentxSlide(n) {
+//     showSlides(slideIndex = n);
+// }
 
-    var xUp = evt.touches[0].clientX;                                    
-    var yUp = evt.touches[0].clientY;
+// /* Основная функция слайдера */
+// function showSlides(n) {
+//     var i;
+//     var slides = document.getElementsByClassName("foto-page-item");
+//     var dots = document.getElementsByClassName("slider-dots-item");
+//     if (n > slides.length) {
+//       slideIndex = 1
+//     }
+//     if (n < 1) {
+//         slideIndex = slides.length
+//     }
+//     for (i = 0; i < slides.length; i++) {
+//         slides[i].style.display = "none";
+//     }
+//     for (i = 0; i < dots.length; i++) {
+//         dots[i].className = dots[i].className.replace(" active", "");
+//     }
+//     slides[slideIndex - 1].style.display = "block";
+//     dots[slideIndex - 1].className += " active";
+// }
 
-    var xDiff = xDown - xUp;
-    var yDiff = yDown - yUp;
-    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {
-        if ( xDiff > 0 ) {
-          rightArrow();
-        } else {
-          leftArrow();
-        }                       
-    }
-    xDown = null;    yDown = null;                                             
-};
+
+
+
+// let gallery = document.getElementById('foto-gallery');
+// let fotoPage = document.getElementsByClassName('foto-page');
+// let galleryClose = document.getElementById('foto-gallery-close');
+// let img = document.getElementById('foto');
+// let rightArrowButton = document.getElementById('foto-arrow-right');
+// let leftArrowButton = document.getElementById('foto-arrow-left');
+
+// /*Открываем галерею нажатием на фотографию*/
+// for (var i = 0; i < fotoPage.length; i++){
+//   var fotoGallery = fotoPage[i].getElementsByTagName('img');
+//   for (var i = 0; i < fotoGallery.length; i++){
+//     fotoGallery[i].addEventListener('click', function(e){
+//       var elem = e.target;
+//       img.src = elem.src;
+//       gallery.classList.add('foto-gallery-open');
+//     });
+//   };
+// };
+
+// /*Закрываем галерею нажатием креста*/
+// function galleryСross(){
+//   img.src = "";
+//   gallery.classList.remove('foto-gallery-open');
+// };
+
+// galleryClose.addEventListener('click', function(){
+//   galleryСross();
+// })
+// ;
+
+// window.addEventListener('popstate', function(){
+//   galleryСross();
+// });
+
+// /*Пролистываем галерею стрелкой влево*/
+// function leftArrow(){
+//   for (var i = 0; i < fotoGallery.length; i++) {
+//     if (img.src == fotoGallery[i].src){
+//       i--;
+//       img.src = fotoGallery[i].src;
+//     }
+//   }
+// };
+
+// leftArrowButton.addEventListener('click', function(){
+//   leftArrow();
+// });
+
+// /*Пролистываем галерею стрелкой вправо*/
+// function rightArrow(){
+//   for (var i = 0; i < fotoGallery.length; i++){
+//     if (img.src == fotoGallery[i].src){
+//       i++;
+//       img.src = fotoGallery[i].src;
+//     };
+//   };
+// };
+
+// rightArrowButton.addEventListener('click', function(){
+//   rightArrow();
+// });
+
+// /*Пролистываем галерею стрелками на клавиатуре*/
+// document.onkeydown = checkKey;
+// function checkKey(e){
+//   e = e || window.event;
+//     if(e.keyCode == '37'){
+//       leftArrow();
+//     }
+//     else if(e.keyCode == '39'){
+//       rightArrow();
+//     }
+//     else if(e.keyCode == '27'){
+//       history.pushState(null, null, ' ');
+//       galleryСross();
+//     }
+// }
+
+// /*Swipe галереи*/
+// img.addEventListener('touchstart', handleTouchStart, false);  
+// img.addEventListener('touchmove', handleTouchMove, false);
+
+// let xDown = null;                                                        
+// let yDown = null;                                                        
+
+// function handleTouchStart(evt) {                                         
+//     xDown = evt.touches[0].clientX;                                      
+//     yDown = evt.touches[0].clientY;                                      
+// };                                                
+
+// function handleTouchMove(evt) {
+//     if ( ! xDown || ! yDown ) {
+//         return;
+//     }
+
+//     var xUp = evt.touches[0].clientX;                                    
+//     var yUp = evt.touches[0].clientY;
+
+//     var xDiff = xDown - xUp;
+//     var yDiff = yDown - yUp;
+//     if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {
+//         if ( xDiff > 0 ) {
+//           rightArrow();
+//         } else {
+//           leftArrow();
+//         }                       
+//     }
+//     xDown = null;    yDown = null;                                             
+// };
 
 
 
