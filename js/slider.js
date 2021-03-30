@@ -38,7 +38,7 @@ Sim.defaults = {
 Sim.prototype.elemPrev = function(num) {
 	num = num || 1;
 
-	let prevElement = this.currentElement;
+	let prevElement = this.currentElement; 
 	this.currentElement -= num;
 	if(this.currentElement < 0) this.currentElement = this.elemCount-1;
 
